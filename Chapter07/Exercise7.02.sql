@@ -10,3 +10,13 @@ SELECT ProductName, NetRetailPrice, UnitKGWeight,
         ELSE 'Very Expensive'
     END AS 'Shipping Cost'
 FROM products;
+
+USE packt_online_shop;
+SELECT OrderID as 'Order Number', ShipmentDate as 'Shipment Date',
+    CASE
+        WHEN ShipmentDate < '2010-12-15' THEN 'Past Shipment Date'
+        WHEN ShipmentDate >= '2010-12-15' AND ShipmentDate < '2019-12-15' THEN 'Recent Shipment Date'
+        ELSE 'Future Shipment Date'
+    END AS 'Shipment Date Category'
+FROM orders
+ORDER BY ShipmentDate;
